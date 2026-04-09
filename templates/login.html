@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login - Employee Task App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="auth-body">
+    <div class="auth-box">
+        <h1>Employee Task Update Notification System</h1>
+        <h2>Login</h2>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        <form method="post" action="/login">
+            <label>Login As</label>
+            <select name="role" required>
+                <option value="">Select Role</option>
+                <option value="employee" {% if request.args.get('role') == 'employee' %}selected{% endif %}>Employee</option>
+                <option value="manager" {% if request.args.get('role') == 'manager' %}selected{% endif %}>Manager</option>
+            </select>
+
+            <label>Username</label>
+            <input type="text" name="username" placeholder="Enter manager ID or employee ID" required>
+
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Enter password" required>
+
+            <button type="submit">Login</button>
+        </form>
+
+       <div class="signup-links">
+            <a href="/signup/employee" class="signup-card">
+                <span class="signup-title">New Employee?</span>
+                <span class="signup-subtitle">Create employee account</span>
+            </a>
+
+            <a href="/signup/manager" class="signup-card">
+                <span class="signup-title">New Manager?</span>
+                <span class="signup-subtitle">Create manager account</span>
+            </a>
+        </div>
+    </div>
+</body>
+</html> 

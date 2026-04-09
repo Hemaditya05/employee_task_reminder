@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Task Update Notification System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="landing-body">
+    <div class="landing-overlay">
+        <div class="landing-content">
+            <div class="hero-left">
+                <h1>Employee Task Update Notification System</h1>
+                <p class="hero-text">
+                    Manage task assignments, track employee progress, and receive timely updates with a simple AWS-based task management platform.
+                </p>
+
+                <div class="feature-boxes">
+                    <div class="feature-card">
+                        <h3>Manager Access</h3>
+                        <p>Assign tasks, monitor deadlines, and track employee submissions.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3>Employee Access</h3>
+                        <p>View assigned tasks, update progress, and submit completed work.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3>Smart Notifications</h3>
+                        <p>Get instant task alerts and completion updates through AWS SNS.</p>
+                    </div>
+                </div>
+            </div>
+
+             <div class="hero-right">
+                 <div class="hero-right">
+                    <div class="action-card">
+                        <h2>Get Started</h2>
+                        <p>Choose how you want to continue.</p>
+
+                        <div class="role-group">
+                            <h3>Employee</h3>
+                            <a href="/login?role=employee" class="landing-btn primary-btn">Employee Login</a>
+                            <a href="/signup/employee" class="landing-btn secondary-btn">Employee Sign Up</a>
+                        </div>
+
+                        <div class="role-group">
+                            <h3>Manager</h3>
+                            <a href="/login?role=manager" class="landing-btn primary-btn">Manager Login</a>
+                            <a href="/signup/manager" class="landing-btn secondary-btn">Manager Sign Up</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

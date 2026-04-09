@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="topbar">
+        <h1>Employee Dashboard</h1>
+        <div>
+            <span>Welcome, {{ employee.name }} ({{ employee.employee_id }})</span>
+            <a href="/logout" class="logout-btn">Logout</a>
+        </div>
+    </div>
+
+    <div class="card wide-card">
+        <h2>My Tasks</h2>
+        <table>
+            <tr>
+                <th>Task ID</th>
+                <th>Task Name</th>
+                <th>Status</th>
+                <th>Priority</th>
+                <th>Deadline</th>
+                <th>Remarks</th>
+            </tr>
+            {% for task in tasks %}
+            <tr>
+                <td>{{ task.task_id }}</td>
+                <td>{{ task.task_name }}</td>
+                <td>{{ task.status }}</td>
+                <td>{{ task.priority }}</td>
+                <td>{{ task.deadline }}</td>
+                <td>{{ task.remarks }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>Update My Task</h2>
+        <form action="/update_task" method="post">
+            <select name="task_id" required>
+                <option value="">Select Task</option>
+                {% for task in tasks %}
+                    <option value="{{ task.task_id }}">
+                        {{ task.task_id }} - {{ task.task_name }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <select name="status" required>
+                <option value="Pending">Pending</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+            </select>
+
+            <textarea name="remarks" placeholder="Add progress/update note"></textarea>
+
+            <button type="submit">Update Task</button>
+        </form>
+    </div>
+</body>
+</html>

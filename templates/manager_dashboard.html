@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manager Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="topbar">
+        <h1>Manager Dashboard</h1>
+        <div>
+            <span>Welcome, {{ manager_name }}</span>
+            <a href="/logout" class="logout-btn">Logout</a>
+        </div>
+    </div>
+
+    <div class="dashboard-grid">
+        
+
+        <div class="card" style="grid-column: span 2;">
+            <h2>Assign Task</h2>
+            <form action="/add_task" method="post">
+                <input type="text" name="task_id" placeholder="Task ID" required>
+
+                <select name="employee_id" required>
+                    <option value="">Select Employee</option>
+                    {% for employee in employees %}
+                        <option value="{{ employee.employee_id }}">
+                            {{ employee.employee_id }} - {{ employee.name }}
+                        </option>
+                    {% endfor %}
+                </select>
+
+                <input type="text" name="task_name" placeholder="Task Name" required>
+
+                <select name="status" required>
+                    <option value="Pending">Pending</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Completed">Completed</option>
+                </select>
+
+                <select name="priority" required>
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
+
+                <input type="date" name="deadline" required>
+                <textarea name="remarks" placeholder="Task description / remarks"></textarea>
+
+                <button type="submit">Assign Task</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="card wide-card">
+        <h2>Employees</h2>
+        <table>
+            <tr>
+                <th>Employee ID</th>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+            {% for employee in employees %}
+            <tr>
+                <td>{{ employee.employee_id }}</td>
+                <td>{{ employee.name }}</td>
+                <td>{{ employee.email }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="card wide-card">
+        <h2>All Tasks</h2>
+        <table>
+            <tr>
+                <th>Task ID</th>
+                <th>Employee ID</th>
+                <th>Task Name</th>
+                <th>Status</th>
+                <th>Priority</th>
+                <th>Deadline</th>
+                <th>Remarks</th>
+            </tr>
+            {% for task in tasks %}
+            <tr>
+                <td>{{ task.task_id }}</td>
+                <td>{{ task.employee_id }}</td>
+                <td>{{ task.task_name }}</td>
+                <td>{{ task.status }}</td>
+                <td>{{ task.priority }}</td>
+                <td>{{ task.deadline }}</td>
+                <td>{{ task.remarks }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
